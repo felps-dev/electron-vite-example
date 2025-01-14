@@ -1,6 +1,6 @@
 {
   "name": "electron-app-example",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "example.com",
@@ -8,6 +8,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/felps-dev/electron-vite-example.git"
+  },
+  "build": {
+    "appId": "com.electron.electron-app-example",
+    "productName": "Electron App Example"
   },
   "scripts": {
     "format": "prettier --write .",
