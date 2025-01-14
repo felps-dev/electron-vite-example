@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain, Menu, Tray, Notification, nativeIma
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import AppUpdater from './updater'
 
 function createWindow(): void {
   // Create the browser window.
@@ -41,6 +42,8 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+  const updater = new AppUpdater()
+  updater.startInterval()
 
   // Setup Tray
   const trayIcon = nativeImage.createFromDataURL(
@@ -55,6 +58,12 @@ app.whenReady().then(() => {
           title: 'Numa App',
           body: 'Hello!'
         }).show()
+      }
+    },
+    {
+      label: 'Check for updates',
+      click: (): void => {
+        updater.restartUpdater()
       }
     }
   ])
